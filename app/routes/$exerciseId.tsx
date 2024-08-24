@@ -34,62 +34,68 @@ export const loader: LoaderFunction = async ({ params }) => {
   // Loop through all lessons to find the exercise
   let foundLesson: Lesson | undefined;
   let exercise: Exercise | undefined;
+  let exerciseIndex: number | undefined;
 
   for (const lesson of lessons.lessons) {
-    exercise = lesson.exercises.find((ex) => ex.id === exerciseId);
-    if (exercise) {
-      foundLesson = lesson;
-      break;
-    }
+    exerciseIndex = lesson.exercises.findIndex((ex) => ex.id === exerciseId);
+    if (exerciseIndex !== -1) {
+        foundLesson = lesson;
+        exercise = lesson.exercises[exerciseIndex];
+        break;
+      }
   }
 
-  if (!exercise) {
+  if (!exercise || exerciseIndex === undefined) {
     throw new Response("Exercise Not Found", { status: 404 });
   }
 
   // Return the found lesson and exercise
-  return json({ exercise, lesson: foundLesson });
+  return json({ exercise, lesson: foundLesson, exerciseIndex });
 };
 
 // Type for the data returned by the loader
 interface LoaderData {
   exercise: Exercise;
+  lesson: Lesson;
+  exerciseIndex: number;
 }
 
 export default function ExercisePage() {
-  const { exercise } = useLoaderData<LoaderData>();
+    const { exercise, lesson, exerciseIndex } = useLoaderData<LoaderData>();
+    const isLastExercise = exerciseIndex === lesson.exercises.length - 1;
 
-  return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">{exercise.title}</h1>
-      {exercise.resourcetype === "VideoExercise" && (
-        <div>
-          <iframe
-            src={exercise.url}
-            frameBorder="0"
-            allow="autoplay; fullscreen"
-            allowFullScreen
-            className="w-full h-64"
-          ></iframe>
+    return (
+        <div className="container mx-auto p-4">
+          <h1 className="text-2xl font-bold mb-4">{exercise.title}</h1>
+          {exercise.resourcetype === "VideoExercise" && (
+            <div>
+              <iframe
+                src={exercise.url}
+                frameBorder="0"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+                className="w-full h-64"
+              ></iframe>
+            </div>
+          )}
+          {exercise.resourcetype === "MultipleChoiceExercise" && exercise.answers && (
+            <MultipleChoice 
+                exercise={{ 
+                id: exercise.id,
+                title: exercise.title,
+                description: exercise.description || '',
+                answers: exercise.answers.map(answer => ({
+                    id: answer.id,
+                    answer: answer.answer
+                }))
+                }} 
+            />
+            )}
+          <NavigationButtons
+            previousExerciseId={exercise.previous_exercise_id}
+            nextExerciseId={exercise.next_exercise_id}
+            isLastExercise={isLastExercise}  // Pass the new prop
+          />
         </div>
-      )}
-      {exercise.resourcetype === "MultipleChoiceExercise" && exercise.answers && (
-        <MultipleChoice 
-            exercise={{ 
-            id: exercise.id,
-            title: exercise.title,
-            description: exercise.description || '',
-            answers: exercise.answers.map(answer => ({
-                id: answer.id,
-                answer: answer.answer
-            }))
-            }} 
-        />
-        )}
-      <NavigationButtons
-        previousExerciseId={exercise.previous_exercise_id}
-        nextExerciseId={exercise.next_exercise_id}
-      />
-    </div>
-  );
-}
+      );
+    }
