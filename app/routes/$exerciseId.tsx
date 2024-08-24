@@ -1,6 +1,7 @@
 import { json, LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import lessons from "~/data/lessons.json";
+import NavigationButtons from "~/components/NavigationButtons";
 
 // Define the TypeScript interfaces for your data
 interface Exercise {
@@ -28,15 +29,28 @@ interface Lesson {
 // Loader function to fetch the correct exercise based on exerciseId
 export const loader: LoaderFunction = async ({ params }) => {
   const exerciseId = params.exerciseId;
-  const lesson: Lesson = lessons.lessons[0]; // Assuming one lesson for simplicity
+//   const lesson: Lesson = lessons.lessons[0]; // Assuming one lesson for simplicity
 
-  const exercise = lesson.exercises.find((ex) => ex.id === exerciseId);
+//   const exercise = lesson.exercises.find((ex) => ex.id === exerciseId);
+
+// Loop through all lessons to find the exercise
+    let foundLesson: Lesson | undefined;
+    let exercise: Exercise | undefined;
+
+    for (const lesson of lessons.lessons) {
+    exercise = lesson.exercises.find((ex) => ex.id === exerciseId);
+    if (exercise) {
+        foundLesson = lesson;
+        break; // Exit loop once the exercise is found
+    }
+    }
 
   if (!exercise) {
     throw new Response("Exercise Not Found", { status: 404 });
   }
 
-  return json({ exercise, lesson });
+  // Return the found lesson and exercise
+  return json({ exercise, lesson: foundLesson });
 };
 
 // Type for the data returned by the loader
@@ -64,7 +78,10 @@ export default function ExercisePage() {
       ) : (
         <div dangerouslySetInnerHTML={{ __html: exercise.description || '' }}></div>
       )}
-      {/* Additional navigation buttons or features can be added here */}
+      <NavigationButtons
+        previousExerciseId={exercise.previous_exercise_id}
+        nextExerciseId={exercise.next_exercise_id}
+      />
     </div>
   );
 }
