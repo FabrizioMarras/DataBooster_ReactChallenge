@@ -1,48 +1,21 @@
-import type { MetaFunction } from "@remix-run/node";
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
-};
+import { Link } from "@remix-run/react";
+import lessons from "~/data/lessons.json";
 
 export default function Index() {
+  // Fetch the ID of the first exercise from the first lesson
+  const firstExerciseId = lessons.lessons[0].exercises[0].id;
+
   return (
-    <div className="font-sans p-4">
-      <h1 className="text-3xl">Welcome to Remix</h1>
-      <ul className="list-disc mt-4 pl-6 space-y-2">
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/quickstart"
-            rel="noreferrer"
-          >
-            5m Quick Start
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/tutorial"
-            rel="noreferrer"
-          >
-            30m Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/docs"
-            rel="noreferrer"
-          >
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Welcome to the BADIR Framework App</h1>
+      <p className="mb-8">
+        Start learning the BADIR framework by clicking the button below to begin the first lesson.
+      </p>
+      <Link to={`/${firstExerciseId}`}>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded">
+          Start Lesson
+        </button>
+      </Link>
     </div>
   );
 }
