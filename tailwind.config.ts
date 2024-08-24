@@ -8,10 +8,28 @@ const config: Config = {
     extend: {
       colors: {
         primary: "#7029df", // White
-        secondary: "#9548f5", // Violet
+        secondary: "#9548F5", // Violet
       },
       fontFamily: {
         text: ["Helvetica", "Arial", "sans-serif"], // Titles
+      },
+      fontSize: {
+        title: ["40px", { lineHeight: "46px" }],
+        normal: ["24px", { lineHeight: "32px" }],
+        small: ["20px", { lineHeight: "23px" }],
+      },
+      borderRadius: {
+        custom: "8px", 
+      },
+      spacing: {
+        icon: "32px",
+        radio: "24px", 
+      },
+      borderWidth: {
+        radio: "2px", 
+      },
+      maxWidth: {
+        custom: "1200px", 
       },
       screens: {
         sm: "640px",

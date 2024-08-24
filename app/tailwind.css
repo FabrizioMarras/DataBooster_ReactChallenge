@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Apply the primary background and text color globally */
-body {
-    @apply bg-primary text-white font-text;
+/* Apply styles as base globally */
+@layer base {
+  body {
+    @apply bg-primary text-white font-text text-small text-left pb-8;
   }
+
+  p img {
+    @apply mt-8;
+  }
+}
