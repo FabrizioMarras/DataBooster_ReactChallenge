@@ -1,11 +1,6 @@
 import { Link } from "@remix-run/react";
 import arrowIcon from "~/assets/icons/arrow-right.svg";
-
-interface NavigationButtonsProps {
-  previousExerciseId: string | null;
-  nextExerciseId: string | null;
-  isLastExercise: boolean;
-}
+import { NavigationButtonsProps } from "~/types/types";
 
 export default function NavigationButtons({
   previousExerciseId,

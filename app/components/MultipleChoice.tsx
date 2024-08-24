@@ -1,11 +1,4 @@
-interface MultipleChoiceProps {
-    exercise: {
-      id: string;
-      title: string;
-      description: string;
-      answers: { id: string; answer: string }[];
-    };
-  }
+import { MultipleChoiceProps } from "~/types/types";
   
   const MultipleChoice: React.FC<MultipleChoiceProps> = ({ exercise }) => {
     return (
