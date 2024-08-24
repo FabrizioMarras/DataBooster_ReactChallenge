@@ -1,12 +1,14 @@
 import { MultipleChoiceProps } from "~/types/types";
+import StyledText from "~/components/styled/StyledText";
   
   const MultipleChoice: React.FC<MultipleChoiceProps> = ({ exercise }) => {
     return (
-      <div>
-        <h2 className="text-title font-bold mb-2">{exercise.title}</h2>
+      <>
         <div className="text-normal font-normal mb-2" dangerouslySetInnerHTML={{ __html: exercise.description }}></div>
         <form className="mt-4 pt-2 gap-3 flex flex-col">
-          <p className="text-small text-secondary font-small mt-4">Pick one option</p>
+        <StyledText variant="small" className="text-secondary mt-4">
+          Pick one option
+        </StyledText>
           {exercise.answers.map((answer) => (
               <label 
                 key={answer.id}
@@ -21,7 +23,7 @@ import { MultipleChoiceProps } from "~/types/types";
               </label>
           ))}
         </form>
-      </div>
+      </>
     );
   };
   

@@ -8,7 +8,7 @@
     @apply bg-primary text-white font-text text-small text-left pb-8;
   }
 
-  p img {
-    @apply mt-8;
+  p img, iframe {
+    @apply mt-8 rounded-custom;
   }
 }

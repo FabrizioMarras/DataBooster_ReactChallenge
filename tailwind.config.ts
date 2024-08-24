@@ -14,9 +14,9 @@ const config: Config = {
         text: ["Helvetica", "Arial", "sans-serif"], // Titles
       },
       fontSize: {
-        title: ["40px", { lineHeight: "46px" }],
-        normal: ["24px", { lineHeight: "32px" }],
-        small: ["20px", { lineHeight: "23px" }],
+        title: ["40px", { lineHeight: "46px", fontWeight: "700" }],
+        normal: ["24px", { lineHeight: "32px", fontWeight: "400" }],
+        small: ["20px", { lineHeight: "23px", fontWeight: "400" }],
       },
       borderRadius: {
         custom: "8px", 

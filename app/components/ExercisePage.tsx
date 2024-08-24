@@ -4,6 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 import NavigationButtons from "~/components/NavigationButtons";
 import MultipleChoice from "~/components/MultipleChoice";
 import { LoaderData } from "~/types/types";
+import StyledText from "~/components/styled/StyledText";
 
 const ExercisePage: React.FC = () => {
   const { exercise, lesson, exerciseIndex } = useLoaderData<LoaderData>();
@@ -13,7 +14,9 @@ const ExercisePage: React.FC = () => {
     <div className="flex flex-col justify-between min-h-screen p-4 md:p-8 lg:p-12">
       <div className="flex-grow flex items-center justify-center">
         <div className="w-full max-w-custom">
-          <h1 className="text-title font-bold font-text mb-6">{exercise.title}</h1>
+          <StyledText variant="title" className="mb-6">
+            {exercise.title}
+          </StyledText>
           {exercise.resourcetype === "VideoExercise" && (
             <div className="mb-8">
               <div className="relative" style={{ paddingBottom: "56.25%" }}> 
