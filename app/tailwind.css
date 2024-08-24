@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Apply the primary background and text color globally */
+body {
+    @apply bg-primary text-white font-text;
+  }
