@@ -2,13 +2,12 @@
 This project is a frontend application built using React and Remix as part of an assignment. The application implements two screens based on the provided Figma designs and utilizes the lessons.json file as the data source.
 
 ## Table of Contents
-- Project Structure
-- Features
-- Technologies Used
-- Installation
-- Approach
-- Improvements
-- Conclusion
+- [Project Structure](#project-structure)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Approach](#approach)
+- [Improvements](#improvements)
 
 ## Project Structure
 
