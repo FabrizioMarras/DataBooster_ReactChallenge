@@ -12,3 +12,18 @@
     @apply mt-8 rounded-custom;
   }
 }
+
+.nav-btn {
+  @apply text-white p-2 rounded-custom transition-colors duration-100 hover:bg-secondary hover:text-white
+}
+
+.btn {
+  @apply bg-secondary border-2 border-secondary text-white rounded-custom px-8 py-2 transition-colors duration-100
+}
+
+.item-interaction {
+  @apply transform transition-transform duration-200 hover:scale-105 active:scale-95;
+}
+.answer-interaction {
+  @apply transform transition-transform duration-200 hover:bg-secondary/80 active:scale-95;
+}

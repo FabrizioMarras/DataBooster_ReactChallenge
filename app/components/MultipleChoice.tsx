@@ -12,12 +12,12 @@ import StyledText from "~/components/styled/StyledText";
           {exercise.answers.map((answer) => (
               <label 
                 key={answer.id}
-                className="flex items-center gap-6 p-8 rounded-xl bg-secondary cursor-pointer">
+                className="flex items-center gap-6 p-8 rounded-xl bg-secondary cursor-pointer answer-interaction">
                 <input
                   type="radio"
                   name={exercise.id}
                   value={answer.id}
-                  className="w-6 h-6 border-2 border-white/25 bg-transparent rounded-full  appearance-none checked:bg-primary flex-shrink-0"
+                  className="w-6 h-6 border-2 border-white/25 bg-transparent rounded-full  appearance-none flex-shrink-0 checked:bg-primary cursor-pointer"
                 />
                 <span className="text-small text-white">{answer.answer}</span>
               </label>

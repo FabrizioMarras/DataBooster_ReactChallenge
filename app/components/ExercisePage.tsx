@@ -13,7 +13,7 @@ const ExercisePage: React.FC = () => {
   return (
     <div className="flex flex-col justify-between min-h-screen p-4 md:p-8 lg:p-12">
       <div className="flex-grow flex items-center justify-center">
-        <div className="w-full max-w-custom">
+        <div className="w-full max-w-custom p-2">
           <StyledText variant="title" className="mb-6">
             {exercise.title}
           </StyledText>

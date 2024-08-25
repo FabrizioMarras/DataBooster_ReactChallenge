@@ -27,14 +27,14 @@ export default function NavigationButtons({
       )}
       {isLastExercise ? (
         <Link to="/thank-you">
-          <button className="text-white p-2 rounded-custom transition-colors duration-100 hover:bg-secondary hover:text-white">
+          <button className="nav-btn item-interaction ">
             <img src={arrowIcon} alt="Next" className="w-icon h-icon" />
           </button>
         </Link>
       ) : (
         <Link
           to={`/${nextExerciseId}`}>
-          <button className="text-white p-2 rounded-custom transition-colors duration-100 hover:bg-secondary hover:text-white">
+          <button className="nav-btn item-interaction ">
             <img src={arrowIcon} alt="Next" className="w-icon h-icon" />
           </button>
         </Link>
